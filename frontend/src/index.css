@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.nav-link {
+  @apply p-2 rounded hover:bg-blue-100 transition font-medium text-gray-700;
+}
