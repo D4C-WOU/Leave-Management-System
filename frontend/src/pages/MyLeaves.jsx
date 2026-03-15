@@ -43,11 +43,11 @@ function MyLeaves() {
 
             <tr>
               <th className="p-3 text-left">Leave Type</th>
-              <th className="text-left">From</th>
-              <th className="text-left">To</th>
+              <th className="px-4 py-2 text-left">From</th>
+              <th className="px-4 py-2 text-left">To</th>
               <th className="text-left">Reason</th>
-              <th className="text-left">Status</th>
-              <th className="text-left">Action</th>
+              <th className="px-4 py-2 text-left">Status</th>
+              <th className="px-4 py-2 text-left">Action</th>
             </tr>
 
           </thead>
@@ -60,16 +60,16 @@ function MyLeaves() {
 
                 <td className="p-3">{leave.leaveType?.name}</td>
 
-                <td>{new Date(leave.fromDate).toLocaleDateString()}</td>
+                <td className="p-3 whitespace-nowrap">{new Date(leave.fromDate).toLocaleDateString()}</td>
 
-                <td>{new Date(leave.toDate).toLocaleDateString()}</td>
+                <td className="p-3 whitespace-nowrap">{new Date(leave.toDate).toLocaleDateString()}</td>
 
                 <td className="text-slate-600">{leave.reason}</td>
 
                 <td>
 
                   <span
-                    className={`px-3 py-1 rounded text-sm font-medium
+                    className={`px-3 py-1 rounded text-sm font-medium 
                     ${leave.status === "approved"
                         ? "bg-green-200 text-green-800"
                         : leave.status === "rejected"
