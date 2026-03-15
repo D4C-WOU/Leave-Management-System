@@ -12,6 +12,9 @@ function LeaveRequestForm() {
     reason: ""
   });
 
+  const [error, setError] = useState('')
+
+
   useEffect(() => {
     const fetchTypes = async () => {
       try {
@@ -98,8 +101,20 @@ function LeaveRequestForm() {
             type="date"
             className="w-full border border-slate-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-slate-400"
             value={form.fromDate}
-            onChange={(e) =>
+            onChange={(e) => {
+              const selectedDate = e.target.value
+              const today = new Date().toISOString().split('T')[0]
+
+              if (selectedDate < today) {
+                setError('Start date cannot be before today')
+              } else {
+                setError('')
+              }
+
               setForm({ ...form, fromDate: e.target.value })
+            }
+
+
             }
             required
           />
@@ -147,7 +162,11 @@ function LeaveRequestForm() {
 
       </div>
 
-
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
+          {error}
+        </div>
+      )}
       {/* Submit */}
       <button
         type="submit"

@@ -21,7 +21,7 @@ function Layout({ children }) {
 
         {/* Sidebar Header */}
         <div className="h-16 flex items-center px-6 text-lg font-semibold border-b border-slate-700">
-          Leavely
+          LeaveFlow
         </div>
 
         {/* Navigation */}

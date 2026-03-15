@@ -7,6 +7,7 @@ function Employees() {
 
   const [users, setUsers] = useState([]);
   const [editing, setEditing] = useState(null);
+  const [search, setSearch] = useState('')
 
   const fetchUsers = async () => {
     const res = await API.get("/users");
@@ -18,8 +19,12 @@ function Employees() {
   }, []);
 
   const addUser = async (data) => {
-    await API.post("/users", data);
-    fetchUsers();
+    try {
+      await API.post("/users", data);
+      fetchUsers();
+    } catch (err) {
+      alert(err.response?.data?.message || "Error creating user");
+    }
   };
 
   const updateUser = async (data) => {
@@ -33,6 +38,12 @@ function Employees() {
     fetchUsers();
   };
 
+  //search users
+  const filteredUsers = users.filter((u) =>
+    u.name.toLowerCase().includes(search.toLowerCase()) ||
+    u.email.toLowerCase().includes(search.toLowerCase())
+  )
+
   return (
     <Layout>
 
@@ -40,7 +51,6 @@ function Employees() {
         Employees
       </h2>
 
-      {/* Form */}
       <div className="bg-slate-50 border border-slate-300 shadow-sm rounded-lg p-6 mb-8">
         <EmployeeForm
           onSubmit={editing ? updateUser : addUser}
@@ -48,29 +58,52 @@ function Employees() {
         />
       </div>
 
-      {/* Table */}
       <div className="bg-white border border-slate-300 shadow-sm rounded-lg overflow-hidden">
+        <div className="mb-4">
+          <input type="text"
+            placeholder="Search Employees by name or email..."
+            className="w-full border p-2 rounded"
+            value={search} onChange={(e) => setSearch(e.target.value)} />
+        </div>
 
         <table className="w-full">
 
           <thead className="bg-slate-200 text-slate-700">
-
             <tr>
               <th className="text-left p-3">Name</th>
               <th className="text-left">Email</th>
+              <th>Total</th>
+              <th className="text-yellow-600">Pending</th>
+              <th className="text-green-600">Approved</th>
+              <th className="text-red-600">Rejected</th>
               <th className="text-center">Actions</th>
             </tr>
-
           </thead>
 
           <tbody>
 
-            {users.map((u) => (
+            {filteredUsers.map((u) => (
 
               <tr key={u._id} className="border-t hover:bg-slate-100">
 
                 <td className="p-3">{u.name}</td>
                 <td>{u.email}</td>
+
+                <td className="text-center font-semibold">
+                  {u.totalLeaves || 0}
+                </td>
+
+                <td className="text-center text-yellow-600">
+                  {u.pending || 0}
+                </td>
+
+                <td className="text-center text-green-600">
+                  {u.approved || 0}
+                </td>
+
+                <td className="text-center text-red-600">
+                  {u.rejected || 0}
+                </td>
 
                 <td className="text-center space-x-2">
 
