@@ -9,7 +9,7 @@ exports.getUsers = async (req, res) => {
 
     const usersWithStats = await Promise.all(
       users.map(async (u) => {
-        const leaves = await Leave.find({ user: u._id });
+        const leaves = await Leave.find({ employee: u._id });
 
         const pending = leaves.filter((l) => l.status === "pending").length;
         const approved = leaves.filter((l) => l.status === "approved").length;
