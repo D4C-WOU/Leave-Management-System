@@ -20,8 +20,6 @@ const protect = (req, res, next) => {
 };
 
 const adminOnly = (req, res, next) => {
-  console.log("🛡 Admin check:", req.user);
-
   if (req.user?.role !== "admin") {
     return res.status(403).json({ message: "Admin only" });
   }
