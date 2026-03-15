@@ -182,19 +182,15 @@ http://localhost:5000
 ---
 
 ## Screenshots
-
-You can add screenshots of the following pages:
-
-- Admin Dashboard
-- Employee Management
-- Leave Request Form
-- Leave Requests Table
+Each Screenshot represents the UI and feel of the overall System with demo credentials used for both admin and user 
 
 Example:
 
 ```
-/screenshots/dashboard.png
-/screenshots/leave-requests.png
+/screenshots/AdminDashboard.png
+/screenshots/LeaveRequestForm.png
+/screenshots/LeaveRequestTable.png
+/screenshots/Employees
 ```
 
 ---
