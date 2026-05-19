@@ -15,7 +15,7 @@ function LeaveTypeForm({ refresh }) {
     try {
 
       await axios.post(
-        "http://localhost:5000/api/leave-types",
+        "https://leave-management-system-h12g.onrender.com/api/leave-types",
         { name, maxDays, description },
         { headers: { Authorization: `Bearer ${token}` } }
       );

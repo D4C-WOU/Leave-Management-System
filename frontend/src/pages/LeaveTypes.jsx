@@ -10,7 +10,7 @@ function LeaveTypes() {
 
   const fetchTypes = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/leave-types",
+      "https://leave-management-system-h12g.onrender.com/api/leave-types",
       {
         headers: { Authorization: `Bearer ${token}` }
       }
@@ -21,7 +21,7 @@ function LeaveTypes() {
 
   const deleteType = async (id) => {
     await axios.delete(
-      `http://localhost:5000/api/leave-types/${id}`,
+      `https://leave-management-system-h12g.onrender.com/api/leave-types/${id}`,
       {
         headers: { Authorization: `Bearer ${token}` }
       }
