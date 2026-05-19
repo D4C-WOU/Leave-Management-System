@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api"
+  baseURL: "https://leave-management-system-h12g.onrender.com",
 });
 
 // Attach token automatically
