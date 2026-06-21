@@ -5,6 +5,11 @@ It provides a centralized platform where employees can apply for leave and admin
 
 This project simulates how real organizations manage leave workflows using a modern full-stack architecture.
 
+
+Live Demo (Desktop site): https://leave-management-system-sandy.vercel.app/
+Demo Credentials: email: admin@gmail.com
+password: admin@123
+
 ---
 
 ## Features
