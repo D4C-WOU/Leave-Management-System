@@ -9,36 +9,36 @@ function Login() {
     password: ""
   });
 
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
+    if (loading) return;
 
+    setLoading(true);
+
+    try {
       const res = await API.post("/auth/login", form);
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);
 
       navigate("/dashboard");
-
     } catch (err) {
-
       const message = err.response?.data?.message;
 
       if (message === "Password is incorrect") {
         alert("Password is incorrect");
-      }
-
-      else if (message === "Email does not exist") {
+      } else if (message === "Email does not exist") {
         alert("This email does not exist");
-      }
-
-      else {
+      } else {
         alert(message || "Login failed");
       }
-
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -73,9 +73,14 @@ function Login() {
           />
 
           <button
-            className="w-full bg-slate-800 text-white py-2 rounded-md hover:bg-slate-900 transition"
+            type="submit"
+            disabled={loading}
+            className={`w-full py-2 rounded-md text-white transition ${loading
+                ? "bg-slate-500 cursor-not-allowed"
+                : "bg-slate-800 hover:bg-slate-900"
+              }`}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
 
         </form>
