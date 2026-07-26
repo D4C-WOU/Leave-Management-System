@@ -56,7 +56,7 @@ function Login() {
 
           <input
             type="email"
-            placeholder="Email"
+            placeholder="admin@gmail.com"
             className="w-full border border-slate-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-slate-400"
             onChange={(e) =>
               setForm({ ...form, email: e.target.value })
@@ -65,7 +65,7 @@ function Login() {
 
           <input
             type="password"
-            placeholder="Password"
+            placeholder="admin@123"
             className="w-full border border-slate-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-slate-400"
             onChange={(e) =>
               setForm({ ...form, password: e.target.value })
